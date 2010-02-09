@@ -1,0 +1,10 @@
+<?r Conference.order(:abstract).each do |c| ?>
+<tr>
+  <td>#{ a(c.acronym, c.url) }</td>
+  <td>#{ c.title }</td>
+  <td align='center'>#{ c.abstract.strftime("%Y-%m-%d") unless c.abstract.nil? }</td>
+  <td align='center'>#{ c.deadline.strftime("%Y-%m-%d") }</td>
+  <td align='center'>#{ c.notification.strftime("%Y-%m-%d") }</td>
+  <td>#{ c.address }</td>
+</tr>
+<?r end ?>
