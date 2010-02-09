@@ -4,3 +4,15 @@ Collect academic conferences and workshops to help you know the deadline.
 
 conflist is created with ramaze. 
 
+
+How to run
+==========
+1. standalone mode
+   $ ruby start.rb
+   # http://localhost:8000/
+
+2. Apache with mod_passenger
+   - config passenger with apache
+   - set RackBaseURI to /conflist
+   - http://localhost/conflist
+
