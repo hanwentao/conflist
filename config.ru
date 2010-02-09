@@ -24,5 +24,11 @@
 require 'app'
 
 Ramaze.options.mode = :live
+
+# ramaze stores session data in memory by default. This can lead to data loss
+# when phison passenger is deployed which may fork a new process for a new request. 
+# Using Sequel serialization to the file-system
+Ramaze.options.cache.session = Ramaze::Cache::Sequel
+
 Ramaze.start(:root => __DIR__, :started => true)
 run Ramaze

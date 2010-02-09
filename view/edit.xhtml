@@ -1,0 +1,41 @@
+<h1>Edit #{ @c.acronym }</h1>
+
+<form method="post" action="/conflist/update/#{@c.id}">
+  <fieldset>
+    <legend>Information</legend>
+
+    <label for="form-acronym">Acronym</label><br>
+    <input id="form-acronym" name="acronym" type="text" size="100" value="#{ @c.acronym }" /><br>
+
+    <label for="form-title">Full Name</label><br>
+    <input id="form-title" name="title" type="text" size="100" value="#{ @c.title }" /><br>
+
+    <label for="form-url">URL</label><br>
+    <input id="form-url" name="url" type="text" size="100" value="#{ @c.url }"/><br>
+
+    <label for="form-abstract">Abstract Due (optional)</label>
+    <?r if @c.abstract.nil? ?>
+      <script>DateInput('abstract', false, 'YYYY-MM-DD')</script>
+    <?r else ?>
+      <script>DateInput('abstract', false, 'YYYY-MM-DD', '#{ @c.abstract.strftime("%Y-%m-%d") }')</script>
+    <?r end ?>
+
+    <label for="form-deadline">Deadline</label>
+    <script>DateInput('deadline', true, 'YYYY-MM-DD', '#{ @c.deadline.strftime("%Y-%m-%d") }')</script>
+
+    <label for="form-notification">Notification</label>
+    <script>DateInput('notification', true, 'YYYY-MM-DD', '#{ @c.notification.strftime("%Y-%m-%d") }')</script>
+
+    <label for="form-address">Address</label><br>
+    <input id="form-address" name="address" type="text" size="100" value="#{@c.address }"/><br>
+
+    <label for="form-cfp">Call For Paper</label><br>
+    <textarea id="form-cfp" name="cfp" cols=100 rows=10>#{ @c.cfp }</textarea><br>
+
+    What is: #{simple_captcha} = <input type="text" name="answer" /><br>
+
+    <input type="submit" /> <input type="reset"  />
+  </fieldset>
+</form>
+
+<h2>#{ a('Home', '/conflist') }</h2>

@@ -1,3 +1,20 @@
+    <span id ="localclock"></span><br><br>
+    <div id="roundbox">
+      <table class="sortable">
+	<caption>Conference List</caption>
+	<thead>
+	  <tr>
+	    <th class="sorttable_nosort">Acronym
+	    <th class="sorttable_nosort">Full Name
+	    <th width="10%" title="click to sort">Abstract Due
+	    <th width="10%" title="click to sort">Paper Deadline
+	    <th width="10%" title="click to sort">Notification
+	    <th class="sorttable_nosort">Address
+	    <th class="sorttable_nosort" id="rightmost">Manage
+	  </tr>
+	</thead>
+	<tbody>
+
 <?r Conference.order(:abstract).each do |c| ?>
 <tr>
   <td>#{ a(c.acronym, c.url) }</td>
@@ -6,5 +23,47 @@
   <td align='center'>#{ c.deadline.strftime("%Y-%m-%d") }</td>
   <td align='center'>#{ c.notification.strftime("%Y-%m-%d") }</td>
   <td>#{ c.address }</td>
+  <td>#{ a('Edit', '/conflist/edit', c.id)} | #{ a('Delete', '/conflist/delete', c.id)}</td>
 </tr>
 <?r end ?>
+
+	</tbody>
+      </table>
+      <p align="right"> &nbsp;</p>
+    </div>
+
+<br><br>
+
+    <form method="post" action="/conflist/add">
+      <fieldset>
+	<legend>Contribute a conference/workshop</legend>
+
+	<label for="form-acronym">Acronym</label><br>
+	<input id="form-acronym" name="acronym" type="text" size="100" /><br>
+
+	<label for="form-title">Full Name</label><br>
+	<input id="form-title" name="title" type="text" size="100" /><br>
+
+	<label for="form-url">URL</label><br>
+	<input id="form-url" name="url" type="text" size="100" /><br>
+
+	<label for="form-abstract">Abstract Due (optional)</label>
+        <script>DateInput('abstract', false, 'YYYY-MM-DD')</script>
+
+	<label for="form-deadline">Deadline</label>
+        <script>DateInput('deadline', true, 'YYYY-MM-DD')</script>
+
+	<label for="form-notification">Notification</label>
+        <script>DateInput('notification', true, 'YYYY-MM-DD')</script>
+
+	<label for="form-address">Address</label><br>
+	<input id="form-address" name="address" type="text" size="100" /><br>
+
+	<label for="form-cfp">Call For Paper</label><br>
+	<textarea name="cfp" cols=100 rows=10></textarea><br>
+
+	What is: #{simple_captcha} = <input type="text" name="answer" /><br>
+
+	<input type="submit" /> <input type="reset"  />
+      </fieldset>
+    </form>

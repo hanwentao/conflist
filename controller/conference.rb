@@ -1,11 +1,11 @@
 class Conferences < Ramaze::Controller
   map '/'
-  layout 'default'
+  layout :default  
+  helper :simple_captcha
 
   def add
     # TODO: validation?
-
-    if request.post?
+    if request.post? and check_captcha(request[:answer])
       Conference.create(:acronym => request[:acronym],
                         :title => request[:title],
                         :url => request[:url],
@@ -15,46 +15,37 @@ class Conferences < Ramaze::Controller
                         :address => request[:address],
                         :cfp => request[:cfp])
     end
-
     redirect route('/conflist')
   rescue Sequel::DatabaseError
     redirect route('/conflist')
   end
   
-#   def create
-#     if request.post? and title = request[:title]
-#       title.strip!
+  def edit(id)
+    @c = Conference[:id => id]
+  end
 
-#       unless title.empty?
-#         Conference.create :title => title
-#       end
-#     end
+  def update(id)
+    if request.post? and check_captcha(request[:answer]) 
+      @c = Conference[:id => id]
+      @c.acronym = request[:acronym]
+      @c.title = request[:title]
+      @c.url = request[:url]
+      @c.abstract = request[:abstract]
+      @c.deadline = request[:deadline]
+      @c.notification = request[:notification]
+      @c.address = request[:address]
+      @c.cfp = request[:cfp]
+      @c.save
+    else
+      redirect_referrer
+    end
 
-#     redirect route('/', :title => title)
-#   rescue Sequel::DatabaseError
-#     redirect route('/', :title => title)
-#   end
+    redirect route('/conflist')
+  end
 
-#   def close(title)
-#     task = Conference[:title => title]
-#     task.done = true
-#     task.save
+  def delete(id)
+    Conference[:id => id].destroy()
 
-#     redirect_referrer
-#   end
-
-#   def open(title)
-#     task = Conference[:title => title]
-#     task.done = false
-#     task.save
-
-#     redirect_referrer
-#   end
-
-#   def delete(title)
-#     task = Conference[:title => title]
-#     task.destroy
-
-#     redirect_referrer
-#   end
+    redirect_referrer
+  end
 end

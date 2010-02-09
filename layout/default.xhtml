@@ -12,57 +12,10 @@
   </head>
 
   <body>
-    <span id ="localclock"></span><br><br>
-    <div id="roundbox">
-      <table class="sortable">
-	<caption>Conference List</caption>
-	<thead>
-	  <tr>
-	    <th class="sorttable_nosort">Acronym<th class="sorttable_nosort">Full Name<th width="130pt" title="click to sort">Abstract Due<th width="145pt" title="click to sort">Paper Deadline<th width="120pt" title="click to sort">Notification<th class="sorttable_nosort" id="rightmost">Address
-	  </tr>
-	</thead>
-	<tbody>
-	  #{ @content }
-	</tbody>
-      </table>
-      <p align="right"> &nbsp;</p>
-    </div>
-
-    <form method="post" action="/conflist/add">
-      <fieldset>
-	<legend>Contribute a conference/workshop:</legend>
-
-	<label for="form-acronym">Acronym</label>
-	<input id="form-acronym" name="aronym" type="text" /><br>
-
-	<label for="form-title">Full Name</label>
-	<input id="form-title" name="title" type="text" /><br>
-
-	<label for="form-url">URL</label>
-	<input id="form-url" name="url" type="text" /><br>
-
-	<label for="form-abstract">Abstract Due (optional)</label>
-        <script>DateInput('abstract', false, 'YYYY-MM-DD')</script>
-
-	<label for="form-deadline">Deadline</label>
-        <script>DateInput('deadline', true, 'YYYY-MM-DD')</script>
-
-	<label for="form-notification">Notification</label>
-        <script>DateInput('notification', true, 'YYYY-MM-DD')</script>
-
-	<label for="form-address">Address</label>
-	<input id="form-address" name="address" type="text" /><br>
-
-	<label for="form-cfp">Call For Paper</label><br>
-	<textarea name="cfp" cols=40 rows=6></textarea><br>
-
-	<input type="submit" />
-	<input type="reset"  />
-      </fieldset>
-    </form>
+    #{ @content }
 
     <p align="right">
-      Maintained by: <a href="http://xueruini.myipcn.org">Ruini Xue</a> <br> 
+      By: <a href="http://xueruini.myipcn.org">Ruini Xue</a> <br> 
       <a href="http://hpc.cs.tsinghua.edu.cn">Institute of High Performance Computing</a> <br>
       <a href="http://www.cs.tsinghua.edu.cn">Department of Computer Science and Technology</a> <br>
       <a href="http://www.tsinghua.edu.cn">Tsinghua University</a>

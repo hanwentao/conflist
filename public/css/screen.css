@@ -2,7 +2,7 @@ body, tbody tr
 {
 	background: #282C2F;
 	color: #B5B5B5;
-	font: 11pt "Lucida Grande","Lucida Sans Unicode",Tahoma, Helvetica, Verdana, sans-serif;	
+	font: 10pt "Lucida Grande","Lucida Sans Unicode",Tahoma, Helvetica, Verdana, sans-serif;	
 }
 
 table
@@ -95,4 +95,13 @@ div#code
 {
 /*	width: 80%; */
 	background: #202326;
+}
+
+input, textarea {
+  color: #000;
+  background-color: #dfe5f2;
+  padding: 2px;
+  -webkit-border-radius: .9em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
 }
