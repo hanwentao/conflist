@@ -3,6 +3,11 @@ class Conferences < Ramaze::Controller
   layout :default  
   helper :simple_captcha
 
+  def index
+    simple_captcha
+    @captcha_question = session[:CAPTCHA][:question]
+  end
+
   def add
     # TODO: validation?
     if request.post? and check_captcha(request[:answer])
@@ -44,8 +49,10 @@ class Conferences < Ramaze::Controller
   end
 
   def delete(id)
-    Conference[:id => id].destroy()
-
+    if check_captcha(request[:answer])
+      Conference[:id => id].destroy()
+    end
+    
     redirect_referrer
   end
 end

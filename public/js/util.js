@@ -33,3 +33,10 @@ window.onload = function()
   loadroundcorners();
   mytime();
 }
+
+function checkDelete(captcha_str, id) {
+  var captcha = prompt('What is ' + captcha_str + ' ?', '');
+  if (captcha != '' && captcha != null) {
+    window.location.href = '/conflist/delete/' + id + '?answer=' + captcha
+  }
+}
