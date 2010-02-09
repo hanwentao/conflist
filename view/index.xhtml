@@ -6,15 +6,30 @@
 	  <tr>
 	    <th class="sorttable_nosort">Acronym
 	    <th class="sorttable_nosort">Full Name
-	    <th width="10%" title="click to sort">Abstract Due
-	    <th width="10%" title="click to sort">Paper Deadline
-	    <th width="10%" title="click to sort">Notification
+	    <th width="105pt" title="click to sort">Abstract
+	    <th width="105pt" title="click to sort">Deadline
+	    <th width="115pt" title="click to sort">Notification
 	    <th class="sorttable_nosort">Address
-	    <th class="sorttable_nosort" id="rightmost">Manage
+	    <th align="center" width="90pt" class="sorttable_nosort" id="rightmost">Manage
 	  </tr>
 	</thead>
 	<tbody>
+<?r is_today_ok = false ?>
 <?r Conference.order(:abstract).each do |c| ?>
+<?r test_date = c.abstract.nil? ? c.deadline : c.abstract ?>
+<?r if (not is_today_ok) and (test_date < Time.now ) ?>
+<?r is_today_ok = true ?>
+<?r today_str = Time.now.strftime("%Y-%m-%d") ?>
+<tr class='today'>
+  <td class='today'>Today</td>
+  <td class='today'>Today</td>
+  <td class='today'>#{today_str}</td>
+  <td class='today'>#{today_str}</td>
+  <td class='today'>#{today_str}</td>
+  <td class='today'>Today</td>
+  <td class='today'>Today</td>
+</tr>
+<?r end ?>
 <tr>
   <td>#{ a(c.acronym, c.url) }</td>
   <td>#{ c.title }</td>
@@ -25,6 +40,19 @@
   <td>#{ a('Edit', '/conflist/edit', c.id)} | 
       <a href="javascript:checkDelete('#{@captcha_question}','#{c.id}')">Delete</a>
   </td>
+</tr>
+<?r end ?>
+<?r if not is_today_ok ?>
+<?r is_today_ok = true ?>
+<?r today_str = Time.now.strftime("%Y-%m-%d") ?>
+<tr class='today'>
+  <td class='today'>Today</td>
+  <td class='today'>Today</td>
+  <td class='today'>#{today_str}</td>
+  <td class='today'>#{today_str}</td>
+  <td class='today'>#{today_str}</td>
+  <td class='today'>Today</td>
+  <td class='today'>Today</td>
 </tr>
 <?r end ?>
 	</tbody>
