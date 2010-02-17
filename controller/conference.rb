@@ -53,7 +53,7 @@ class Conferences < Ramaze::Controller
       Conference[:id => id].destroy()
     end
     
-    redirect_referrer
+    redirect route('/conflist')
   end
 
 private

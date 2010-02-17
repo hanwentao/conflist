@@ -14,13 +14,13 @@ table#main
 table#main caption
 {
 	padding: 10px;
-	font-size: 150%;
+	font-size: 140%;
 	color: #84D100;
 }
 
 table#main thead tr
 {
-	font-size: 11pt;
+	font-size: 10pt;
 	background: #000;
  	text-align: center;
 	color: #985CFF;
@@ -107,7 +107,12 @@ div#addButton
 	line-height: 2;
         cursor: pointer;
         width: 2cm;
-	font-size: 120%;
+	font-size: 110%;
  	text-align: center;
 	color: #84D100;
+}
+
+div#addButton:hover
+{
+	font-weight: bold;
 }

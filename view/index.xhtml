@@ -60,10 +60,10 @@
       <p align="right"> &nbsp;</p>
     </div>
 
-  <div id="addButton" class="roundbox" onClick="toggleAdd('add')" title="Contribute a conference or workshop?">Add</div>
+  <div id="addButton" class="roundbox" onClick="toggleAdd('add', this)" title="Contribute a conference or workshop?">Add</div>
 
   <div id="add" style="display:none">
-    <form method="post" action="/conflist/add">
+    <form method="post" action="/conflist/add" onSubmit="return checkForm(this);">
       <fieldset>
 	<legend>Contribute a conference/workshop</legend>
 
@@ -78,7 +78,7 @@
 	  </tr>
 	  <tr>
 	    <td>URL:</td>
-	    <td><input id="url" name="url" type="text" size="100" /></td>
+	    <td><input id="url" name="url" type="text" size="100" value="http://" /></td>
 	  </tr>
 	<tr>
 	  <td>Abstract Due (optional):</td>
@@ -145,7 +145,7 @@
 	</tr>
         <tr>
           <td></td>
-          <td><input type="submit" /> <input type="reset"  /></td>
+          <td><input type="submit" /> <input type="reset" /></td>
         </tr>
 	</table>
       </fieldset>
