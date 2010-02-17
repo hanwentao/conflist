@@ -105,6 +105,7 @@ div#addButton
 {
         margin-top: 10pt;
 	line-height: 2;
+        cursor: pointer;
         width: 2cm;
 	font-size: 120%;
  	text-align: center;
