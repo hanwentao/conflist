@@ -55,4 +55,10 @@ class Conferences < Ramaze::Controller
     
     redirect_referrer
   end
+
+private
+
+  def failed(message)
+    flash[:error] = message
+  end
 end

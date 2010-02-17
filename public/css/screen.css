@@ -1,24 +1,24 @@
-body, tbody tr
+body, table#main tbody tr
 {
 	background: #282C2F;
 	color: #B5B5B5;
 	font: 10pt "Lucida Grande","Lucida Sans Unicode",Tahoma, Helvetica, Verdana, sans-serif;	
 }
 
-table
+table#main
 {
 	border-collapse: collapse; 
 	margin: 5pt;
 }
 
-caption
+table#main caption
 {
 	padding: 10px;
 	font-size: 150%;
 	color: #84D100;
 }
 
-thead tr
+table#main thead tr
 {
 	font-size: 11pt;
 	background: #000;
@@ -26,7 +26,7 @@ thead tr
 	color: #985CFF;
 }
 
-thead th
+table#main thead th
 {
 	padding: 0.5em 0em 0.5em 0em;
 	border-right: 3px solid #282c2f; 
@@ -34,20 +34,19 @@ thead th
  	border-bottom: 3px solid #282c2f; 
 }
 
-thead th#rightmost
+table#main thead th#rightmost
 {
 	border: 0pt;
 	border-top: 3px solid #282c2f; 
  	border-bottom: 3px solid #282c2f; 
 }
 
-
-tbody tr:hover
+table#main tbody tr:hover
 {
 	background: #202326;
 }
 
-tbody td 
+table#main tbody td 
 {
 	font-size: 10pt;
 	color: #B5B5B5;
@@ -55,12 +54,12 @@ tbody td
 	padding: 3pt;
 }
 
-tbody tr.today
+table#main tbody tr.today
 {
 	background: #cc0000;
 }
 
-tbody td.today
+table#main tbody td.today
 {
 	text-align: center;
 	color: white;
@@ -86,22 +85,28 @@ i
 	color: #667AFF;
 }
 
-div#roundbox
+div.roundbox
 {
 	background: #000;
 }
 
-div#code
-{
-/*	width: 80%; */
-	background: #202326;
-}
 
 input, textarea {
-  color: #000;
-  background-color: #dfe5f2;
   padding: 2px;
-  -webkit-border-radius: .9em;
-  -moz-border-radius: 1em;
-  border-radius: 1em;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  border: 1pt solid black;
+  background: #202326;
+  color: #667AFF;
+}
+
+div#addButton
+{
+        margin-top: 10pt;
+	line-height: 2;
+        width: 2cm;
+	font-size: 120%;
+ 	text-align: center;
+	color: #84D100;
 }

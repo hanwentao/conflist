@@ -1,6 +1,6 @@
     <span id ="localclock"></span><br><br>
-    <div id="roundbox">
-      <table class="sortable">
+    <div class="roundbox">
+      <table class="sortable" id="main">
 	<caption>Conference List</caption>
 	<thead>
 	  <tr>
@@ -31,13 +31,13 @@
 </tr>
 <?r end ?>
 <tr>
-  <td>#{ a(c.acronym, c.url) }</td>
-  <td>#{ c.title }</td>
-  <td align='center'>#{ c.abstract.strftime("%Y-%m-%d") unless c.abstract.nil? }</td>
-  <td align='center'>#{ c.deadline.strftime("%Y-%m-%d") }</td>
-  <td align='center'>#{ c.notification.strftime("%Y-%m-%d") }</td>
-  <td>#{ c.address }</td>
-  <td>#{ a('Edit', '/conflist/edit', c.id)} | 
+  <td>#{a(c.acronym, c.url)}</td>
+  <td>#{c.title}</td>
+  <td align='center'>#{c.abstract.strftime("%Y-%m-%d") unless c.abstract.nil?}</td>
+  <td align='center'>#{c.deadline.strftime("%Y-%m-%d")}</td>
+  <td align='center'>#{c.notification.strftime("%Y-%m-%d")}</td>
+  <td>#{c.address}</td>
+  <td>#{a('Edit', '/conflist/edit', c.id)} | 
       <a href="javascript:checkDelete('#{@captcha_question}','#{c.id}')">Delete</a>
   </td>
 </tr>
@@ -60,38 +60,94 @@
       <p align="right"> &nbsp;</p>
     </div>
 
-    <br><br>
+  <div id="addButton" class="roundbox" onClick="toggleAdd('add')" title="Contribute a conference or workshop?">Add</div>
 
+  <div id="add" style="display:none">
     <form method="post" action="/conflist/add">
       <fieldset>
 	<legend>Contribute a conference/workshop</legend>
 
-	<label for="form-acronym">Acronym</label><br>
-	<input id="form-acronym" name="acronym" type="text" size="100" /><br>
-
-	<label for="form-title">Full Name</label><br>
-	<input id="form-title" name="title" type="text" size="100" /><br>
-
-	<label for="form-url">URL</label><br>
-	<input id="form-url" name="url" type="text" size="100" /><br>
-
-	<label for="form-abstract">Abstract Due (optional)</label>
-        <script>DateInput('abstract', false, 'YYYY-MM-DD')</script>
-
-	<label for="form-deadline">Deadline</label>
-        <script>DateInput('deadline', true, 'YYYY-MM-DD')</script>
-
-	<label for="form-notification">Notification</label>
-        <script>DateInput('notification', true, 'YYYY-MM-DD')</script>
-
-	<label for="form-address">Address</label><br>
-	<input id="form-address" name="address" type="text" size="100" /><br>
-
-	<label for="form-cfp">Call For Paper</label><br>
-	<textarea name="cfp" cols=100 rows=10></textarea><br>
-
-	What is: #{@captcha_question} = <input type="text" name="answer" /><br>
-
-	<input type="submit" /> <input type="reset"  />
+	<table>
+	  <tr>
+	    <td>Acronym:</td> 
+	    <td><input id="acronym" name="acronym" type="text" size="100" /></td>
+	  </tr>
+	  <tr>
+	    <td>Full Name: </td>
+	    <td><input id="title" name="title" type="text" size="100" /></td>
+	  </tr>
+	  <tr>
+	    <td>URL:</td>
+	    <td><input id="url" name="url" type="text" size="100" /></td>
+	  </tr>
+	<tr>
+	  <td>Abstract Due (optional):</td>
+	  <td>
+	    <input id="abstract" name="abstract" type="text" size="20" readonly="readonly" />
+	    <img src="/conflist/images/calendar.jpg" id="abstract-trigger" />
+	    <script>
+	      Calendar.setup({
+	      showTime   : true,
+	      minuteStep : 1,
+	      dateFormat : "%Y-%m-%d %H:%M",
+	      trigger    : "abstract-trigger",
+	      inputField : "abstract",
+	      onSelect   : function () {this.hide()}
+	      });
+	    </script>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Deadline:</td>
+	  <td>
+	    <input id="deadline" name="deadline" type="text" size="20" readonly="readonly" />
+	    <img src="/conflist/images/calendar.jpg" id="deadline-trigger" />
+	    <script>
+	      Calendar.setup({
+	      showTime   : true,
+	      minuteStep : 1,
+	      dateFormat : "%Y-%m-%d %H:%M",
+	      trigger    : "deadline-trigger",
+	      inputField : "deadline",
+	      onSelect   : function () {this.hide()}
+	      });
+	    </script>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Notification:</td>
+	  <td>
+	    <input id="notification" name="notification" type="text" size="20" readonly="readonly" />
+	    <img src="/conflist/images/calendar.jpg" id="notification-trigger" />
+	    <script>
+	      Calendar.setup({
+	      showTime   : true,
+	      minuteStep : 1,
+	      dateFormat : "%Y-%m-%d %H:%M",
+	      trigger    : "notification-trigger",
+	      inputField : "notification",
+	      onSelect   : function () {this.hide()}
+	      });
+	    </script>
+	  </td>
+	</tr>
+	<tr>
+	  <td>Address:</td>
+	  <td><input id="address" name="address" type="text" size="100" /></td>
+	</tr>
+	<tr>
+	  <td>Call for Paper:</td>
+	  <td><textarea name="cfp" cols=100 rows=10></textarea></td>
+	</tr>
+	<tr>
+	  <td>What is:  </td>
+	  <td>#{@captcha_question} = <input type="text" name="answer" /></td>
+	</tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" /> <input type="reset"  /></td>
+        </tr>
+	</table>
       </fieldset>
     </form>
+  </div>

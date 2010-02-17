@@ -1,41 +1,93 @@
-<h1>Edit #{ @c.acronym }</h1>
+<h1>Edit - <i>#{@c.acronym}</i></h1>
 
 <form method="post" action="/conflist/update/#{@c.id}">
   <fieldset>
     <legend>Information</legend>
 
-    <label for="form-acronym">Acronym</label><br>
-    <input id="form-acronym" name="acronym" type="text" size="100" value="#{ @c.acronym }" /><br>
+    <table>
+      <tr>
+	<td>Acronym:</td>
+	<td><input id="acronym" name="acronym" type="text" size="100" value="#{@c.acronym}" /></td>
+      </tr>
+      <tr>
+	<td>Full Name: </td>
+	<td><input id="title" name="title" type="text" size="100" value="#{@c.title}" /></td>
+      </tr>
+      <tr>
+	<td>URL:</td>
+	<td><input id="url" name="url" type="text" size="100" value="#{ @c.url }" /></td>
+      </tr>
+      <tr>
+	<td>Abstract Due (optional):</td>
+	<td>
+	  <input id="abstract" name="abstract" type="text" size="20" readonly="readonly"
+		 value="#{@c.abstract.strftime('%Y-%m-%d %H:%M') unless @c.abstract.nil?}" />
+	  <img src="/conflist/images/calendar.jpg" id="abstract-trigger" />
+	  <script>
+	    Calendar.setup({
+	    showTime   : true,
+	    minuteStep : 1,
+	    dateFormat : "%Y-%m-%d %H:%M",
+	    trigger    : "abstract-trigger",
+	    inputField : "abstract",
+	    onSelect   : function () {this.hide()},
+	    });
+	  </script>
+	</td>
+      </tr>
+      <tr>
+	<td>Deadline:</td>
+	<td>
+	  <input id="deadline" name="deadline" type="text" size="20" readonly="readonly"
+		 value='#{@c.deadline.strftime("%Y-%m-%d %H:%M")}' />
+	  <img src="/conflist/images/calendar.jpg" id="deadline-trigger" />
+	  <script>
+	    Calendar.setup({
+	    showTime   : true,
+	    minuteStep : 1,
+	    dateFormat : "%Y-%m-%d %H:%M",
+	    trigger    : "deadline-trigger",
+	    inputField : "deadline",
+	    onSelect   : function () {this.hide()},
+	    });
+	  </script>
+	</td>
+      </tr>
+      <tr>
+	<td>Notification:</td>
+	<td>
+	  <input id="notification" name="notification" type="text" size="20" readonly="readonly"
+		 value="#{@c.deadline.strftime('%Y-%m-%d %H:%M')}" />
+	  <img src="/conflist/images/calendar.jpg" id="notification-trigger" />
+	  <script>
+	    Calendar.setup({
+	    showTime   : true,
+	    minuteStep : 1,
+	    dateFormat : "%Y-%m-%d %H:%M",
+	    trigger    : "notification-trigger",
+	    inputField : "notification",
+	    onSelect   : function () {this.hide()},
+	    });
+	  </script>
+	</td>
+      </tr>
 
-    <label for="form-title">Full Name</label><br>
-    <input id="form-title" name="title" type="text" size="100" value="#{ @c.title }" /><br>
-
-    <label for="form-url">URL</label><br>
-    <input id="form-url" name="url" type="text" size="100" value="#{ @c.url }"/><br>
-
-    <label for="form-abstract">Abstract Due (optional)</label>
-    <?r if @c.abstract.nil? ?>
-      <script>DateInput('abstract', false, 'YYYY-MM-DD')</script>
-    <?r else ?>
-      <script>DateInput('abstract', false, 'YYYY-MM-DD', '#{ @c.abstract.strftime("%Y-%m-%d") }')</script>
-    <?r end ?>
-
-    <label for="form-deadline">Deadline</label>
-    <script>DateInput('deadline', true, 'YYYY-MM-DD', '#{ @c.deadline.strftime("%Y-%m-%d") }')</script>
-
-    <label for="form-notification">Notification</label>
-    <script>DateInput('notification', true, 'YYYY-MM-DD', '#{ @c.notification.strftime("%Y-%m-%d") }')</script>
-
-    <label for="form-address">Address</label><br>
-    <input id="form-address" name="address" type="text" size="100" value="#{@c.address }"/><br>
-
-    <label for="form-cfp">Call For Paper</label><br>
-    <textarea id="form-cfp" name="cfp" cols=100 rows=10>#{ @c.cfp }</textarea><br>
-
-    What is: #{simple_captcha} = <input type="text" name="answer" /><br>
-
+      <tr>
+	<td>Address:</td>
+	<td><input id="address" name="address" type="text" size="100" value="#{@c.address}" /></td>
+      </tr>
+      <tr>
+	<td>Call for Paper:</td>
+	<td><textarea name="cfp" cols="100" rows="10">#{@c.cfp}</textarea></td>
+      </tr>
+      <tr>
+	<td>What is:  </td>
+	<td>#{simple_captcha} = <input type="text" name="answer" /></td>
+      </tr>
+    </table>
+    
     <input type="submit" /> <input type="reset"  />
   </fieldset>
 </form>
 
-<h2>#{ a('Home', '/conflist') }</h2>
+<h3>#{ a('Home', '/conflist') }</h3>

@@ -1,7 +1,6 @@
 function loadroundcorners() 
 {
-  Nifty("div#roundbox");
-  Nifty("div#code");
+  Nifty("div.roundbox");
 };
 
 function mytime() 
@@ -15,7 +14,7 @@ function mytime()
   var second = currentTime.getSeconds();
 
   if (second <= 9) 
-    s = "0" + seccond;
+    second = "0" + second;
 
   if (minute <= 9) 
     minute = "0" + minute;
@@ -40,3 +39,19 @@ function checkDelete(captcha_str, id) {
     window.location.href = '/conflist/delete/' + id + '?answer=' + captcha
   }
 }
+
+function toggleAdd(id) {
+  var t = document.getElementById(id);
+  var btn = document.getElementById('addButton');
+
+  if (t.style.display == 'none') {
+    t.style.display = '';
+    btn.innerHTML = 'Hide';
+  } else {
+    t.style.display = 'none';
+    btn.innerHTML = 'Add';
+  }
+
+  loadroundcorners();
+}
+
