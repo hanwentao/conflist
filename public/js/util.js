@@ -45,10 +45,12 @@ function toggleAdd(id, myself) {
 	var myself = myself;
 
 	if (t.style.display == 'none') {
-		t.style.display = '';
+		// t.style.display = '';
+		animatedcollapse.show(id);
 		myself.innerHTML = 'Hide';
 	} else {
-		t.style.display = 'none';
+		//t.style.display = 'none';
+		animatedcollapse.hide(id);
 		myself.innerHTML = 'Add';
 	}
 
@@ -57,7 +59,7 @@ function toggleAdd(id, myself) {
 
 function checkURL(url) {
     var v = new RegExp(); 
-    v.compile("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$"); 
+    v.compile("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=~]+$"); 
     if (!v.test(url)) { 
 	return false; 
     } else {

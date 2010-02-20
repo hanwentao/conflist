@@ -1,4 +1,4 @@
-body, table#main tbody tr
+body, table#main tr
 {
 	background: #282C2F;
 	color: #B5B5B5;
@@ -92,6 +92,7 @@ div.roundbox
 
 
 input, textarea {
+  font: 10pt "Lucida Grande","Lucida Sans Unicode",Tahoma, Helvetica, Verdana, sans-serif;	
   padding: 2px;
   -webkit-border-radius: .5em;
   -moz-border-radius: .5em;

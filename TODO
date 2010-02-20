@@ -1,4 +1,6 @@
 1. pagnate
+   - sub-uri deployment bug makes the pagnation helper can not calculate the correct path.
 2. auto forms for adding and editing
 3. RSS/Atom
 4. Google site search
+5. rich test input for cfp

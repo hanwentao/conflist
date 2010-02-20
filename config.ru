@@ -30,5 +30,7 @@ Ramaze.options.mode = :live
 # Using Sequel serialization to the file-system
 Ramaze.options.cache.session = Ramaze::Cache::Sequel
 
+# Ramaze.options.prefix = 'conflist'
+
 Ramaze.start(:root => __DIR__, :started => true)
 run Ramaze
