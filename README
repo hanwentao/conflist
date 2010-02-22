@@ -22,8 +22,9 @@ Requirements
 - CKEditor
 - jQuery
   - JJMenu
+  - aToolTip
   - animatedcollapse
-- jSCal2
+- JSCal2
 - sorttable
 - nifty
 

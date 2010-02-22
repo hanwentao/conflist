@@ -88,3 +88,7 @@ function checkForm(form) {
 	return true; 
 }
 
+$(function(){
+	$("th").aToolTip();
+	$("td").aToolTip();
+});

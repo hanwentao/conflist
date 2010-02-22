@@ -65,15 +65,6 @@ table#main tbody td.today
 	color: white;
 }
 
-.inicode
-{
-	padding: 0.5em 0.5em 0.5em 1em;
-	white-space: pre;
-	line-height: 1.4;
-	color: #ccc;
-	font-family: monospace;
-}
-
 a 
 {
 	color: #6CF;
@@ -99,7 +90,8 @@ input, textarea {
   border-radius: .5em;
   border: 1pt solid black;
   background: #202326;
-  color: #667AFF;
+  /*color: #667AFF;*/
+  color: #FEC92C;
 }
 
 .myButton
@@ -110,7 +102,7 @@ input, textarea {
 	line-height: 2;
         cursor: pointer;
 	font-size: 110%;
-  	color: white;
+/*  	color: white;*/
   	background: #3E0000;
   	text-decoration:none;
   	text-align:center
