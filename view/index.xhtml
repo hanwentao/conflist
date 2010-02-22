@@ -9,8 +9,7 @@
 	    <th width="105pt" title="click to sort">Abstract
 	    <th width="105pt" title="click to sort">Deadline
 	    <th width="115pt" title="click to sort">Notification
-	    <th class="sorttable_nosort">Address
-	    <th align="center" width="90pt" class="sorttable_nosort" id="rightmost">Manage
+	    <th class="sorttable_nosort rightmost">Address
 	  </tr>
 	</thead>
 	<tbody>
@@ -27,19 +26,15 @@
   <td class='today'>#{today_str}</td>
   <td class='today'>#{today_str}</td>
   <td class='today'>Today</td>
-  <td class='today'>Today</td>
 </tr>
 <?r end ?>
-<tr>
+<tr class="record" id="record#{c.id}" onClick="window.open('/conflist/view/#{c.id}')">
   <td>#{a(c.acronym, c.url)}</td>
-  <td title="#{c.cfp}">#{c.title}</td>
+  <td title="click to see the details.">#{c.title}</td>
   <td align='center'>#{c.abstract.strftime("%Y-%m-%d") unless c.abstract.nil?}</td>
   <td align='center'>#{c.deadline.strftime("%Y-%m-%d")}</td>
   <td align='center'>#{c.notification.strftime("%Y-%m-%d")}</td>
   <td>#{c.address}</td>
-  <td>#{a('Edit', '/conflist/edit', c.id)} | 
-      <a href="javascript:checkDelete('#{@captcha_question}','#{c.id}')">Delete</a>
-  </td>
 </tr>
 <?r end ?>
 <?r if not is_today_ok ?>
@@ -52,7 +47,6 @@
   <td class='today'>#{today_str}</td>
   <td class='today'>#{today_str}</td>
   <td class='today'>Today</td>
-  <td class='today'>Today</td>
 </tr>
 <?r end ?>
 	</tbody>
@@ -60,7 +54,22 @@
       <p align="right"> &nbsp;</p>
     </div>
 
-  <div id="addButton" class="roundbox" onClick="toggleAdd('add', this)" title="Contribute a conference or workshop?">Add</div>
+    <script type="text/javascript">
+	$(".record").jjmenu("rightClick",
+			    [
+			      {title:"View",
+			       action:{type:"gourl", url:"/conflist/view/#confID#"}},
+			      {title:"Edit", 
+			       action:{type:"gourl", url:"/conflist/edit/#confID#"}},
+			      {title:"Delete", 
+			       action:{type:"fn",callback:"(function(data) {checkDelete('#{@captcha_question}',data.confID());})"}}
+			    ],
+			    {confID:function() {return triggerElement.id.substring(6);}},
+			    {show:"fadeIn",xposition:"mouse",yposition:"mouse"}
+			   );
+    </script>
+
+  <div id="addButton" class="myButton" onClick="toggleAdd('add', this)" title="Contribute a conference or workshop?">Add</div>
 
   <div id="add" style="display:none">
     <form method="post" action="/conflist/add" onSubmit="return checkForm(this);">
@@ -137,7 +146,7 @@
 	</tr>
 	<tr>
 	  <td>Call for Paper:</td>
-	  <td><textarea name="cfp" cols=100 rows=10></textarea></td>
+	  <td><textarea class="ckeditor" name="cfp" cols="100" rows="10"></textarea></td>
 	</tr>
 	<tr>
 	  <td>What is:  </td>

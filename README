@@ -16,3 +16,14 @@ How to run
    - set RackBaseURI to /conflist
    - http://localhost/conflist
 
+
+Requirements
+============
+- CKEditor
+- jQuery
+  - JJMenu
+  - animatedcollapse
+- jSCal2
+- sorttable
+- nifty
+

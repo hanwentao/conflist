@@ -34,7 +34,7 @@ table#main thead th
  	border-bottom: 3px solid #282c2f; 
 }
 
-table#main thead th#rightmost
+table#main thead th.rightmost
 {
 	border: 0pt;
 	border-top: 3px solid #282c2f; 
@@ -56,7 +56,7 @@ table#main tbody td
 
 table#main tbody tr.today
 {
-	background: #cc0000;
+	background: darkred;
 }
 
 table#main tbody td.today
@@ -85,7 +85,7 @@ i
 	color: #667AFF;
 }
 
-div.roundbox
+.roundbox
 {
 	background: #000;
 }
@@ -102,18 +102,21 @@ input, textarea {
   color: #667AFF;
 }
 
-div#addButton
+.myButton
 {
         margin-top: 10pt;
+  	display: block;
+        width: 2cm;
 	line-height: 2;
         cursor: pointer;
-        width: 2cm;
 	font-size: 110%;
- 	text-align: center;
-	color: #84D100;
+  	color: white;
+  	background: #3E0000;
+  	text-decoration:none;
+  	text-align:center
 }
 
-div#addButton:hover
+.myButton:hover
 {
-	font-weight: bold;
+	background: #9F2904;
 }

@@ -29,6 +29,10 @@ class Conferences < Ramaze::Controller
     @c = Conference[:id => id]
   end
 
+  def view(id)
+    @c = Conference[:id => id]
+  end
+
   def update(id)
     if request.post? and check_captcha(request[:answer]) 
       @c = Conference[:id => id]

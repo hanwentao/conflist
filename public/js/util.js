@@ -1,6 +1,7 @@
 function loadroundcorners() 
 {
-	Nifty("div.roundbox");
+	Nifty("div.roundbox", "transparent");
+	Nifty("div.myButton", "transparent");
 };
 
 function mytime() 
@@ -54,12 +55,13 @@ function toggleAdd(id, myself) {
 		myself.innerHTML = 'Add';
 	}
 
+	// FIXME: why should I re-execute the round corner scripts?
 	loadroundcorners();
 }
 
 function checkURL(url) {
     var v = new RegExp(); 
-    v.compile("^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=~]+$"); 
+    v.compile("^[A-Za-z]+://[A-Za-z0-9-_%&\?\/.=~]+$"); 
     if (!v.test(url)) { 
 	return false; 
     } else {
@@ -85,3 +87,4 @@ function checkForm(form) {
 	
 	return true; 
 }
+
