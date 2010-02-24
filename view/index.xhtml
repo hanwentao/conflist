@@ -28,7 +28,7 @@
   <td class='today'>Today</td>
 </tr>
 <?r end ?>
-<tr class="record" id="record#{c.id}" onClick="window.open('/conflist/view/#{c.id}')">
+<tr class="record" id="record#{c.id}" onClick="window.open('/view/#{c.id}')">
   <td>#{a(c.acronym, c.url)}</td>
   <td>#{c.title}</td>
   <td align='center' title="#{c.abstract}">#{c.abstract.strftime("%Y-%m-%d") unless c.abstract.nil?}</td>
@@ -58,9 +58,9 @@
 	$(".record").jjmenu("rightClick",
 			    [
 			      {title:"View",
-			       action:{type:"gourl", url:"/conflist/view/#confID#"}},
+			       action:{type:"gourl", url:"/view/#confID#"}},
 			      {title:"Edit", 
-			       action:{type:"gourl", url:"/conflist/edit/#confID#"}},
+			       action:{type:"gourl", url:"/edit/#confID#"}},
 			      {title:"Delete", 
 			       action:{type:"fn",callback:"(function(data) {checkDelete('#{@captcha_question}',data.confID());})"}}
 			    ],
@@ -72,7 +72,7 @@
   <div id="addButton" class="myButton" onClick="toggleAdd('add', this)" title="Contribute a conference or workshop?">Add</div>
 
   <div id="add" style="display:none">
-    <form method="post" action="/conflist/add" onSubmit="return checkForm(this);">
+    <form method="post" action="/add" onSubmit="return checkForm(this);">
       <fieldset>
 	<legend>Contribute a conference/workshop</legend>
 
@@ -93,7 +93,7 @@
 	  <td>Abstract Due (optional):</td>
 	  <td>
 	    <input id="abstract" name="abstract" type="text" size="20" readonly="readonly" />
-	    <img src="/conflist/images/calendar.jpg" id="abstract-trigger" />
+	    <img src="/images/calendar.jpg" id="abstract-trigger" />
 	    <script>
 	      Calendar.setup({
 	      showTime   : true,
@@ -110,7 +110,7 @@
 	  <td>Deadline:</td>
 	  <td>
 	    <input id="deadline" name="deadline" type="text" size="20" readonly="readonly" />
-	    <img src="/conflist/images/calendar.jpg" id="deadline-trigger" />
+	    <img src="/images/calendar.jpg" id="deadline-trigger" />
 	    <script>
 	      Calendar.setup({
 	      showTime   : true,
@@ -127,7 +127,7 @@
 	  <td>Notification:</td>
 	  <td>
 	    <input id="notification" name="notification" type="text" size="20" readonly="readonly" />
-	    <img src="/conflist/images/calendar.jpg" id="notification-trigger" />
+	    <img src="/images/calendar.jpg" id="notification-trigger" />
 	    <script>
 	      Calendar.setup({
 	      showTime   : true,

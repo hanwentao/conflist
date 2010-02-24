@@ -13,8 +13,7 @@ How to run
 
 2. Apache with mod_passenger
    - config passenger with apache
-   - set RackBaseURI to /conflist
-   - http://localhost/conflist
+   - http://localhost/
 
 
 Requirements

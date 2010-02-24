@@ -1,6 +1,6 @@
 <h1>Edit - <i>#{@c.acronym}</i></h1>
 
-<form method="post" action="/conflist/update/#{@c.id}" onSubmit="return checkForm(this);">
+<form method="post" action="/update/#{@c.id}" onSubmit="return checkForm(this);">
   <fieldset>
     <legend>Information</legend>
 
@@ -22,7 +22,7 @@
 	<td>
 	  <input id="abstract" name="abstract" type="text" size="20" readonly="readonly"
 		 value="#{@c.abstract.strftime('%Y-%m-%d %H:%M') unless @c.abstract.nil?}" />
-	  <img src="/conflist/images/calendar.jpg" id="abstract-trigger" />
+	  <img src="/images/calendar.jpg" id="abstract-trigger" />
 	  <script>
 	    Calendar.setup({
 	    showTime   : true,
@@ -40,7 +40,7 @@
 	<td>
 	  <input id="deadline" name="deadline" type="text" size="20" readonly="readonly"
 		 value='#{@c.deadline.strftime("%Y-%m-%d %H:%M")}' />
-	  <img src="/conflist/images/calendar.jpg" id="deadline-trigger" />
+	  <img src="/images/calendar.jpg" id="deadline-trigger" />
 	  <script>
 	    Calendar.setup({
 	    showTime   : true,
@@ -58,7 +58,7 @@
 	<td>
 	  <input id="notification" name="notification" type="text" size="20" readonly="readonly"
 		 value="#{@c.deadline.strftime('%Y-%m-%d %H:%M')}" />
-	  <img src="/conflist/images/calendar.jpg" id="notification-trigger" />
+	  <img src="/images/calendar.jpg" id="notification-trigger" />
 	  <script>
 	    Calendar.setup({
 	    showTime   : true,
@@ -93,4 +93,4 @@
   </fieldset>
 </form>
 
-<h3>#{ a('Home', '/conflist') }</h3>
+<h3>#{a('Home', '/')}</h3>

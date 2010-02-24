@@ -20,9 +20,9 @@ class Conferences < Ramaze::Controller
                         :address => request[:address],
                         :cfp => request[:cfp])
     end
-    redirect route('/conflist')
+    redirect route(:/)
   rescue Sequel::DatabaseError
-    redirect route('/conflist')
+    redirect route(:/)
   end
   
   def edit(id)
@@ -49,7 +49,7 @@ class Conferences < Ramaze::Controller
       redirect_referrer
     end
 
-    redirect route('/conflist')
+    redirect route(:/)
   end
 
   def delete(id)
@@ -57,7 +57,7 @@ class Conferences < Ramaze::Controller
       Conference[:id => id].destroy()
     end
     
-    redirect route('/conflist')
+    redirect route(:/)
   end
 
 private
