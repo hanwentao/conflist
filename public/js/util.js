@@ -55,7 +55,7 @@ function toggleAdd(id, myself) {
 		myself.innerHTML = 'Add';
 	}
 
-	// FIXME: why should I re-execute the round corner scripts?
+	// XXX: why should I re-execute the round corner scripts?
 	loadroundcorners();
 }
 

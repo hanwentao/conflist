@@ -1,11 +1,18 @@
 class Conferences < Ramaze::Controller
   map '/'
   layout :default  
-  helper :simple_captcha
+  helper :simple_captcha, :paginate
+
+  trait :paginate => {
+    :limit => 20,
+    :var => 'page',
+  }
 
   def index
     simple_captcha
     @captcha_question = session[:CAPTCHA][:question]
+    # XXX: I've installed 'datamapper', why map() is required?
+    @pager = paginate(Conference.order(:abstract).map())
   end
 
   def add

@@ -1,6 +1,6 @@
-    <span id ="localclock" style="color:#FEC92C"></span><br><br>
+    <span id="localclock" style="color:#FEC92C;"></span><br><br>
     <div class="roundbox">
-      <table class="sortable" id="main">
+      <table class="sortable scrolltable" id="main">
 	<caption>Conference List</caption>
 	<thead>
 	  <tr>
@@ -14,8 +14,8 @@
 	</thead>
 	<tbody>
 <?r is_today_ok = false ?>
-<?r Conference.order(:abstract).each do |c| ?>
-<?r test_date = c.abstract.nil? ? c.deadline : c.abstract ?>
+<?r @pager.each do |c| ?>
+<?r test_date = c[:abstract].nil? ? c[:deadline] : c[:abstract] ?>
 <?r if (not is_today_ok) and (test_date < Time.now ) ?>
 <?r is_today_ok = true ?>
 <?r today_str = Time.now.strftime("%Y-%m-%d") ?>
@@ -28,13 +28,13 @@
   <td class='today'>Today</td>
 </tr>
 <?r end ?>
-<tr class="record" id="record#{c.id}" onClick="window.open('/view/#{c.id}')">
-  <td>#{a(c.acronym, c.url)}</td>
-  <td>#{c.title}</td>
-  <td align='center' title="#{c.abstract}">#{c.abstract.strftime("%Y-%m-%d") unless c.abstract.nil?}</td>
-  <td align='center' title="#{c.deadline}">#{c.deadline.strftime("%Y-%m-%d")}</td>
-  <td align='center' title="#{c.notification}">#{c.notification.strftime("%Y-%m-%d")}</td>
-  <td>#{c.address}</td>
+<tr class="record" id="record#{c[:id]}" onClick="window.open('/view/#{c[:id]}')">
+  <td>#{a(c[:acronym], c[:url])}</td>
+  <td title="<b>Left Click</b> to view, <b>Right Click</b> to edit.">#{c[:title]}</td>
+  <td align='center' title="#{c[:abstract]}">#{c[:abstract].strftime("%Y-%m-%d") unless c[:abstract].nil?}</td>
+  <td align='center' title="#{c[:deadline]}">#{c[:deadline].strftime("%Y-%m-%d")}</td>
+  <td align='center' title="#{c[:notification]}">#{c[:notification].strftime("%Y-%m-%d")}</td>
+  <td>#{c[:address]}</td>
 </tr>
 <?r end ?>
 <?r if not is_today_ok ?>
@@ -51,7 +51,7 @@
 <?r end ?>
 	</tbody>
       </table>
-      <p align="right"> &nbsp;</p>
+      #{@pager.navigation if @pager.needed?} &nbsp;
     </div>
 
     <script type="text/javascript">
