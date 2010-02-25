@@ -28,9 +28,9 @@
   <td class='today'>Today</td>
 </tr>
 <?r end ?>
-<tr class="record" id="record#{c[:id]}" onClick="window.open('/view/#{c[:id]}')">
+<tr class="record" id="record#{c[:id]}">
   <td>#{a(c[:acronym], c[:url])}</td>
-  <td title="<b>Left Click</b> to view, <b>Right Click</b> to edit.">#{c[:title]}</td>
+  <td title="<b>Right Click</b> to edit.">#{a(c[:title], rs(:view, c[:id]))}</td>
   <td align='center' title="#{c[:abstract]}">#{c[:abstract].strftime("%Y-%m-%d") unless c[:abstract].nil?}</td>
   <td align='center' title="#{c[:deadline]}">#{c[:deadline].strftime("%Y-%m-%d")}</td>
   <td align='center' title="#{c[:notification]}">#{c[:notification].strftime("%Y-%m-%d")}</td>
