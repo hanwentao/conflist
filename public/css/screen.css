@@ -41,6 +41,12 @@ table#main thead th.rightmost
  	border-bottom: 3px solid #282c2f; 
 }
 
+table#main thead th.leftmost
+{
+	border: 0pt;
+}
+
+
 table#main tbody tr:hover
 {
 	background: #202326;
@@ -67,7 +73,9 @@ table#main tbody td.today
 
 .indicator
 {
-    color: #FFF;
+	border: 0pt;
+	color: #FFF;
+	background: #000;
 }
 
 a 
