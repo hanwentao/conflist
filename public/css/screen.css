@@ -65,6 +65,11 @@ table#main tbody td.today
 	color: white;
 }
 
+.indicator
+{
+    color: #FFF;
+}
+
 a 
 {
 	color: #6CF;

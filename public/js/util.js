@@ -89,6 +89,15 @@ function checkForm(form) {
 }
 
 $(function(){
+	/* for aToolTip */
 	$("th").aToolTip();
 	$("td").aToolTip();
+
+	/* for indicator*/
+	$("table#main tbody tr").hover(function() {
+		$(this).find("td:first-child").html("&#x25B6;");
+		// $("td.indicator", this).html("&#x25B6;");
+	}, function() {
+		$(this).find("td:first-child").html("");
+	});
 });

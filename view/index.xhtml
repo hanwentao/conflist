@@ -4,6 +4,7 @@
 	<caption>Conference List</caption>
 	<thead>
 	  <tr>
+	    <th width="20pt" class="sorttable_nosort">
 	    <th class="sorttable_nosort">Acronym
 	    <th class="sorttable_nosort">Full Name
 	    <th width="105pt" title="click to sort!">Abstract
@@ -20,6 +21,7 @@
 <?r is_today_ok = true ?>
 <?r today_str = Time.now.strftime("%Y-%m-%d") ?>
 <tr class='today'>
+  <td class="indicator"></td>
   <td class='today'>Today</td>
   <td class='today'>Today</td>
   <td class='today'>#{today_str}</td>
@@ -29,6 +31,7 @@
 </tr>
 <?r end ?>
 <tr class="record" id="record#{c[:id]}">
+  <td class="indicator"></td>
   <td>#{a(c[:acronym], c[:url])}</td>
   <td title="<b>Right Click</b> to edit.">#{a(c[:title], rs(:view, c[:id]))}</td>
   <td align='center' title="#{c[:abstract]}">#{c[:abstract].strftime("%Y-%m-%d") unless c[:abstract].nil?}</td>
@@ -41,6 +44,7 @@
 <?r is_today_ok = true ?>
 <?r today_str = Time.now.strftime("%Y-%m-%d") ?>
 <tr class='today'>
+  <td class="indicator"></td>
   <td class='today'>Today</td>
   <td class='today'>Today</td>
   <td class='today'>#{today_str}</td>
